@@ -1,3 +1,8 @@
-[*] donwload repository
-[*] pnpm / npm install
-[*] pnpm dev / npm run dev
+## Instalacion
+
+- donwload repository
+- pnpm install or npm install
+- pnpm dev or npm run dev
+
+## License
+MIT
