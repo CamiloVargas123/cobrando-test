@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, Center, Container, HStack, Text } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { logoutUser, selectUserData } from 'src/redux/slices/user'
 
 export default function OverView() {

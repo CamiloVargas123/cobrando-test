@@ -1,21 +1,18 @@
-import { Container, Heading, IconButton, Spinner, Stat, StatNumber, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/react'
-import { Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, ThemeProvider } from '@mui/material'
-import Paper from '@mui/material/Paper';
+import { Container, Spinner } from '@chakra-ui/react';
+import { ThemeProvider } from '@mui/material';
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
-import { useQuery } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { Currency } from 'src/models';
-import { selectUserData } from 'src/redux/slices/user'
 import { theme } from 'src/style';
-import { getListCurrency } from './services/getCurrency'
+import { getListCurrency } from './services/getCurrency';
 
 export default function TableCripto() {
   const [rowsPerPage, setRowsPerPage] = useState(5)
   const [amount, setAmount] = useState(0)
   const [staticData, setStaticData] = useState<Currency[]>([])
 
-  const { data, isLoading, refetch } = useQuery(['certificationsNinja'], () => getListCurrency({ start: amount, limit: amount + 100 }), {
+  const { data, isLoading, refetch } = useQuery(['certificationsNinja'], () => getListCurrency({ start: amount, limit: 100 }), {
     refetchOnWindowFocus: true,
   })
 
@@ -57,8 +54,8 @@ export default function TableCripto() {
   ];
 
   function moreCurrency(page: number) {
-    if ((page + 1) * rowsPerPage === data?.length) {
-      setAmount(data.length)
+    if (data && (page + 1) * rowsPerPage === (data.length + amount)) {
+      setAmount(old => old + data.length)
     }
   }
 
